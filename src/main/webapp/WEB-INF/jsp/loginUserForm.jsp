@@ -110,7 +110,7 @@
 </head>
 
 <body>
-  <form name="registration" onsubmit="return formValidation()" action="signup.htm" method="post">
+  <form name="registration" onsubmit="return formValidation()" action="login.htm" method="post">
     <table>
       <tr>
         <h1>Athleto Northeastern Login</h1>

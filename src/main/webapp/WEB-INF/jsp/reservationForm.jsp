@@ -129,10 +129,10 @@
     <div class="elem-group">
       <select name="sporttype-selection" required>
         <option value="null">Select Sport</option>
-        <option value="tabletennis">Table Tennis</option>
-        <option value="squash">Squash</option>
-        <option value="badminton">Badminton</option>
-        <option value="lawntennis">Lawn Tennis</option>
+        <option value="TABLE_TENNIS">Table Tennis</option>
+        <option value="SQUASH">Squash</option>
+        <option value="BADMINTON">Badminton</option>
+        <option value="LAWN_TENNIS">Lawn Tennis</option>
       </select>
     </div>
     <div class="elem-group">

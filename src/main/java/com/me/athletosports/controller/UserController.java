@@ -53,28 +53,22 @@ public class UserController {
 	public ModelAndView loginUserPost(HttpServletRequest request, UserDAO userdao) {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		System.out.println("Email entered, " + request.getParameter("email"));
+		System.out.println("Email entered: " + request.getParameter("email") +
+				"\nPassword Entered: " + password);
 
 		User user = userdao.getUser(email);
-
-		System.out.println("User found, First Name: " + user.getFirstname());
-
-//		 || (user.getPassword() != password)
-
-		if (user == null) {
-			return new ModelAndView("redirect:/login.htm");
+		if ((user != null) && (user.getPassword().equals(password.trim()))) {
+			System.out.println("User found, First Name: " + user.getFirstname());
+			request.getSession().setAttribute("userInfo", user);
+			return new ModelAndView("redirect:/home.htm");
 		}
-
-		request.getSession().setAttribute("userInfo", user);
-
-		/*Redirect to home screen*/
-		return new ModelAndView("redirect:/home.htm");
+		return new ModelAndView("redirect:/login.htm");
 	}
 
-	@PostMapping("/logout.htm")
+	@GetMapping("/logout.htm")
 	public ModelAndView logoutUserPost(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		session.setAttribute("userInfo", null);
+		session.invalidate();
 		return new ModelAndView("redirect:/login.htm");
 	}
 

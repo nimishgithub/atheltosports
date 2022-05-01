@@ -13,12 +13,16 @@ public class SessionInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("userInfo");
-        if (user == null) {
-            return false;
-        };
-        return request.getRequestURI().equalsIgnoreCase("/login.htm");
+        User user = (User) request.getSession().getAttribute("userInfo");
+        if (request.getRequestURI().equalsIgnoreCase("/athletosports/login.htm") ||
+                (request.getRequestURI().equalsIgnoreCase("/athletosports/signup.htm") ||
+                        (user != null))) {
+            System.out.println("Allowing URL: " + request.getRequestURI());
+            return true;
+        }
+        System.out.println("Intercepting URL: " + request.getRequestURI());
+        response.sendRedirect("/athletosports/login.htm");
+        return false;
     }
 
 }

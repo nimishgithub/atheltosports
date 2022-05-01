@@ -11,6 +11,7 @@ import com.me.athletosports.pojo.User;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class UserController {
@@ -42,7 +43,6 @@ public class UserController {
 		return new ModelAndView("redirect:/home.htm");
 	}
 
-
 	// Login User
 	@GetMapping("/login.htm")
 	public String loginUserGet() {
@@ -52,19 +52,30 @@ public class UserController {
 	@PostMapping("/login.htm")
 	public ModelAndView loginUserPost(HttpServletRequest request, UserDAO userdao) {
 		String email = request.getParameter("email");
+		String password = request.getParameter("password");
 		System.out.println("Email entered, " + request.getParameter("email"));
+
 		User user = userdao.getUser(email);
-		System.out.println("username found, First Name: " + user.getFirstname());
+
+		System.out.println("User found, First Name: " + user.getFirstname());
+
+//		 || (user.getPassword() != password)
 
 		if (user == null) {
-//			// Ask user to login again.
-//			Map<String, String> map = new HashMap<String, String>();
-//			map.put("title", "User Not Found");
-//			map.put("description", "Invalid user...");
 			return new ModelAndView("redirect:/login.htm");
 		}
+
+		request.getSession().setAttribute("userInfo", user);
+
 		/*Redirect to home screen*/
 		return new ModelAndView("redirect:/home.htm");
+	}
+
+	@PostMapping("/logout.htm")
+	public ModelAndView logoutUserPost(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.setAttribute("userInfo", null);
+		return new ModelAndView("redirect:/login.htm");
 	}
 
 }

@@ -89,7 +89,7 @@
     </head>
     <body>
         <div class="container">
-          <h2> My Bookings </h2>
+          <h2> Reservations </h2>
           <ul class="responsive-table">
             <li class="table-header">
               <div class="col col-1">Date</div>

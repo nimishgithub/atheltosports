@@ -19,6 +19,25 @@
     checkinElem.onchange = function() {
       checkoutElem.setAttribute("min", this.value);
     }
+
+    function formValidation() {
+        // Select all input elements for verification
+        var sportType = document.getElementById("sporttype-selection");
+        var slot = document.getElementById("slot-selection");
+
+        if (sportType.value == "null") {
+            alert("Please select the sport type");
+            sportType.focus();
+            return false;
+        }
+
+        if (slot.value == "null") {
+            alert("Please select the slot");
+            slot.focus();
+            return false;
+        }
+        return true;
+    }
   </script>
   <style>
     body {
@@ -121,26 +140,29 @@
 </head>
 <body>
   <h2> Reserve Your Spot </h2>
-  <form action="" method="post">
+  <form onsubmit="return formValidation()" action="reservation.htm" method="post">
     <div class="elem-group inlined">
       <label for="checkin-date">Select Date</label>
       <input type="date" id="checkin-date" name="checkin-date" required>
     </div>
     <div class="elem-group">
-      <select name="sporttype-selection" required>
+      <select name="sporttype-selection" id="sporttype-selection" required>
         <option value="null">Select Sport</option>
-        <option value="TABLE_TENNIS">Table Tennis</option>
+        <option value="TABLE TENNIS">Table Tennis</option>
         <option value="SQUASH">Squash</option>
         <option value="BADMINTON">Badminton</option>
-        <option value="LAWN_TENNIS">Lawn Tennis</option>
+        <option value="LAWN TENNIS">Lawn Tennis</option>
       </select>
     </div>
     <div class="elem-group">
-      <select name="slot-selection" required>
+      <select name="slot-selection" id="slot-selection" required>
         <option value="null">Select Time Slot</option>
-        <option value="9AM to 10AM">9:00 AM - 10:00 AM</option>
-        <option value="10AM to 11AM">10:00 AM - 11:00 AM</option>
-        <option value="11AM to 12PM">11:00 AM - 12:00 PM</option>
+        <option value="9:00 AM - 10:00 AM">9:00 AM - 10:00 AM</option>
+        <option value="10:00 AM - 11:00 AM">10:00 AM - 11:00 AM</option>
+        <option value="11:00 AM - 12:00 PM">11:00 AM - 12:00 PM</option>
+        <option value="12:00 PM to 01:00 PM">12:00 PM to 01:00 PM</option>
+        <option value="01:00 PM to 02:00 PM">01:00 PM to 02:00 PM</option>
+        <option value="02:00 PM to 03:00 PM">02:00 PM to 03:00 PM</option>
       </select>
     </div>
     <hr>

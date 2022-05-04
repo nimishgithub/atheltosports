@@ -2,7 +2,6 @@ package com.me.athletosports.pojo;
 import com.me.athletosports.Helper;
 import org.springframework.stereotype.Component;
 import javax.persistence.*;
-import java.util.Date;
 
 @Component
 @Entity
@@ -12,12 +11,9 @@ public class Reservation {
     private long id;
 
     private long user_id; // User
-    private long date; //
+    private String date; //
     private String slot; //"9 AM to 10 AM"
     private String sportType; //SQUASH, TENNIS
-
-    private String sportTypeUI;
-    private String dateUI;
 
 
     public long getId() {
@@ -36,12 +32,12 @@ public class Reservation {
         this.user_id = user_id;
     }
 
-    public long getDate() {
+    public String getDate() {
         return date;
     }
 
     public void setDate(long date) {
-        this.date = date;
+        this.date = Helper.convertLongToFormattedString(date);
     }
 
     public String getSlot() {
@@ -60,12 +56,8 @@ public class Reservation {
         this.sportType = sportType;
     }
 
-    public void setupUIProperties() {
-        this.sportTypeUI = this.getSportTypeUI();
-        this.dateUI = this.getDateUI();
-    }
-
     // UI Related Properties
+    /*
     private String getSportTypeUI() {
         switch (this.getSportType()) {
             case "SQUASH":
@@ -78,11 +70,8 @@ public class Reservation {
                 return "Badminton";
         }
         return "";
-    }
+    }*/
 
-    private String getDateUI() {
-        return Helper.convertLongToFormattedString(getDate());
-    }
 
 }
 

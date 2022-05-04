@@ -45,9 +45,9 @@ public class ReservationController {
 
     // Fetch Reservations
     @GetMapping("/listreservations.htm")
-    public String listAdvertsGet(HttpServletRequest request, ReservationDAO reservationDAO) {
-        List<Reservation> reservations = reservationDAO.list();
-        reservations.forEach(x->x.setupUIProperties());
+    public String listReservationsGet(HttpServletRequest request, ReservationDAO reservationDAO) {
+        User user = (User) request.getSession().getAttribute("userInfo");
+        List<Reservation> reservations = reservationDAO.list(user.getIsAdmin(), user.getId());
 
         request.setAttribute("reservations", reservations);
         System.out.println("Did fetch total " + String.valueOf(reservations.size()));

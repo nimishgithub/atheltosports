@@ -30,10 +30,20 @@ public class UserController {
 	@PostMapping("/signup.htm")
 	public ModelAndView signupPost(HttpServletRequest request, SessionStatus status, UserDAO userdao) {
 		User user = new User();
+
+		/*Validation are added in JSP itself via Javascript*/
 		user.setFirstname(request.getParameter("firstname"));
 		user.setLastname(request.getParameter("lastname"));
 		user.setEmail(request.getParameter("email"));
 		user.setPassword(request.getParameter("password"));
+		Boolean isAdmin = Boolean.parseBoolean(request.getParameter("signup-as-admin"));
+		user.setIsAdmin(isAdmin);
+
+		if (isAdmin) {
+			System.out.println("Siging up as admin, empId " + request.getParameter("employee-id"));
+			user.setEmployeeId(request.getParameter("employee-id"));
+		}
+
 		try {
 			userdao.save(user);
 		} catch (AthletoException e) {

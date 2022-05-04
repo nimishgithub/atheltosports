@@ -1,10 +1,6 @@
 package com.me.athletosports.pojo;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
+import javax.persistence.*;
+import org.hibernate.annotations.Type;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,6 +13,11 @@ public class User {
     private String lastname;
     private String email;
     private String password;
+    private String employeeId;
+    @Column(columnDefinition = "TINYINT")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
+    private Boolean isAdmin;
+
 
     public User(String firstname, String lastname, String email, String password) {
         this.firstname = firstname;
@@ -65,6 +66,23 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Boolean getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(Boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+
+
+    public String getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(String employeeId) {
+        this.employeeId = employeeId;
     }
 
 

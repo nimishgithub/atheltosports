@@ -135,8 +135,8 @@
 
       <tr>
         <td><label for="signup-as-admin-checkbox">Signup as Admin:</label></td>
-        <td><input type="checkbox" name="signup-as-admin-checkbox"
-                   id="signup-as-admin-checkbox"
+        <td><input type="checkbox" name="signup-as-admin"
+                   value="true" id="signup-as-admin-checkbox"
                    onclick="manageIsAdminFieldVisibility()"></td>
       </tr>
       <tr>

@@ -9,9 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.me</groupId>
-	<artifactId>advert</artifactId>
+	<artifactId>athletosports</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>advert</name>
+	<packaging>war</packaging>
+	<name>AthletoApp</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
@@ -60,12 +61,8 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>com.places.Main</mainClass>
+					<mainClass>com.me.athletosports.AthletoSportsApp</mainClass>
 				</configuration>
 				<executions>
 					<execution>

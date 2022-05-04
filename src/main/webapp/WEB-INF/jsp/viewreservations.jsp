@@ -90,17 +90,24 @@
     <body>
         <div class="container">
           <h2> Reservations </h2>
+          <c:set var="isAdminUser" value="${requestScope.user.isAdmin}"/>
           <ul class="responsive-table">
             <li class="table-header">
               <div class="col col-1">Date</div>
               <div class="col col-2">Slot</div>
               <div class="col col-3">Sport</div>
+              <c:if test = "${isAdminUser == true}">
+                <div class="col col-4">User Id</div>
+              </c:if>
             </li>
             <c:forEach var="reservation" items="${requestScope.reservations}">
                <li class="table-row">
                   <div class="col col-1" data-label="date">${reservation.date}</div>
                   <div class="col col-2" data-label="slot">${reservation.slot}</div>
                   <div class="col col-3" data-label="sporttype">${reservation.sportType}</div>
+                  <c:if test = "${isAdminUser == true}">
+                        <div class="col col-4" data-label="user_id">${reservation.user_id}</div>
+                  </c:if>
                </li>
             </c:forEach>
           </ul>

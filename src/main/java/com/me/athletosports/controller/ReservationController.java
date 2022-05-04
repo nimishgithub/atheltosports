@@ -53,6 +53,7 @@ public class ReservationController {
         List<Reservation> reservations = reservationDAO.list(user.getIsAdmin(), user.getId());
 
         request.setAttribute("reservations", reservations);
+        request.setAttribute("user", user);
         System.out.println("Did fetch total " + String.valueOf(reservations.size()));
         return "viewreservations";
     }

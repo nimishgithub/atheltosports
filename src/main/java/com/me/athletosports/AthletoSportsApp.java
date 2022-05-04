@@ -20,11 +20,5 @@ public class AthletoSportsApp extends SpringBootServletInitializer implements We
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
 		return builder.sources(AthletoSportsApp.class);
 	}
-	
-	@Bean(name = "multipartResolver")
-	public CommonsMultipartResolver multipartResolver() {
-	    CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-	    multipartResolver.setMaxUploadSize(10000000);
-	    return multipartResolver;
-	}
+
 }

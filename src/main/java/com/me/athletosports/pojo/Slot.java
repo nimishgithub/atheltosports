@@ -1,5 +1,3 @@
 package com.me.athletosports.pojo;
 
-public enum Slot {
-
-}
+public enum Slot {}

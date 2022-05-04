@@ -1,5 +1,6 @@
 package com.me.athletosports.controller;
 
+import com.me.athletosports.EmailService;
 import com.me.athletosports.Helper;
 import com.me.athletosports.dao.ReservationDAO;
 import com.me.athletosports.exception.AthletoException;
@@ -26,7 +27,7 @@ public class ReservationController {
     }
 
     @PostMapping("/reservation.htm")
-    public ModelAndView makeReservationPost(HttpServletRequest request, ReservationDAO reservationDAO) {
+    public ModelAndView makeReservationPost(HttpServletRequest request, ReservationDAO reservationDAO, EmailService emailservice) {
         User user = (User) request.getSession().getAttribute("userInfo");
         System.out.println("Did fetch User ID " + user.getId());
         Reservation reservation = new Reservation();
@@ -39,6 +40,8 @@ public class ReservationController {
         } catch (AthletoException e) {
             System.out.println("Reservation cannot be Added: " + e.getMessage());
         }
+        emailservice.sendEmail(reservation, user);
+
         /*Redirect to home screen*/
         return new ModelAndView("redirect:/listreservations.htm");
     }
